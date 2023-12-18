@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('describe');
-            $table->foreignId('color_id')->constrained();
+            $table->integer('quantity');
             $table->timestamps();
         });
     }
