@@ -12,7 +12,7 @@
 
     <a href="{{ route('products.index') }}">Trở lại danh sách</a>
 
-    <form method="POST" action="{{ route('products.store') }}">
+    <form method="POST" action="{{ route('products.store') }}" enctype="multipart/form-data">
         @csrf
 
         <input type="text" name="name" class="rounded" placeholder="Tên">
@@ -20,6 +20,8 @@
         <input type="text" name="describe" placeholder="Mô tả">
         <br>
         <input type="text" name="quantity" placeholder="Số lượng">
+        <br>
+        <input type="file" name="images[]" placeholder="Choose image" id="image" multiple>
         <br>
         <button type="submit" class="bg-indigo-800">Thêm</button>
 
