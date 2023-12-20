@@ -9,6 +9,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Gate;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -29,6 +30,9 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        if (Gate::allows('access-authorization')) {
+            return redirect()->intended(RouteServiceProvider::DASHBOARD);
+        }
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 

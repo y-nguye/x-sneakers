@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Products;
+use App\Models\Product;
 
 class ProductController extends Controller
 {
@@ -12,7 +12,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Products::all();
+        $products = Product::all();
         return view('product.index', ['products' => $products]);
     }
 
@@ -29,7 +29,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $product = new Products;
+        $product = new Product;
 
         $product->name = $request->name;
         $product->describe = $request->describe;
@@ -45,7 +45,7 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        $product = Products::where('id', $id)->first();
+        $product = Product::where('id', $id)->first();
         return view('product.show', ['product' => $product]);
     }
 
@@ -54,7 +54,7 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
-        $product = Products::where('id', $id)->first();
+        $product = Product::where('id', $id)->first();
         return view('product.edit', ['product' => $product]);
     }
 
@@ -63,7 +63,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $product = Products::where('id', $id)->first();
+        $product = Product::where('id', $id)->first();
 
         $product->name = $request->name;
         $product->describe = $request->describe;
@@ -79,7 +79,7 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        $product = Products::where('id', $id)->first();
+        $product = Product::where('id', $id)->first();
         $product->delete();
         return redirect(route('products.index'));
     }
