@@ -64,7 +64,8 @@ class ProductController extends Controller
     public function show(string $id)
     {
         $product = Product::where('id', $id)->first();
-        return view('product.show', ['product' => $product]);
+        $img_filenames = ImgProduct::where('product_id', $id)->get();
+        return view('product.show', ['product' => $product, 'img_filenames' => $img_filenames]);
     }
 
     /**
@@ -73,6 +74,7 @@ class ProductController extends Controller
     public function edit(string $id)
     {
         $product = Product::where('id', $id)->first();
+
         return view('product.edit', ['product' => $product]);
     }
 

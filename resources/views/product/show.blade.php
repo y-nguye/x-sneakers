@@ -13,6 +13,11 @@
 
     <p>{{ $product->describe }}</p>
 
+
+    @foreach($img_filenames as $img)
+    <img src="{{ asset('storage/uploads/' . $img->file_name) }}" alt="img">
+    @endforeach
+
     <a href="{{ route('products.edit', ['product' => $product->id]) }}">Sửa</a>
 
     <form method="POST" action="{{ route('products.destroy', ['product' => $product->id]) }}">
