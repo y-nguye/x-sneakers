@@ -98,11 +98,13 @@ class ProductController extends Controller
     public function destroy(string $id)
     {
         $product = Product::where('id', $id)->first();
-        $product->delete();
 
-        $img_filenames = ImgProduct::where('product_id', $id)->get();
-        foreach ($img_filenames as $file) {
-            Storage::disk('public')->delete('/uploads' . '/' . $file->file_name);
+        if ($product) {
+            $img_filenames = ImgProduct::where('product_id', $id)->get();
+            foreach ($img_filenames as $file) {
+                Storage::disk('public')->delete($this->dir_uploads . $file->file_name);
+            }
+            $product->delete();
         }
 
         return redirect(route('products.index'));
