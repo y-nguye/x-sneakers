@@ -13,7 +13,6 @@
 
     <p>{{ $product->describe }}</p>
 
-
     @foreach($img_filenames as $img)
     <img src="{{ asset('storage/uploads/' . $img->file_name) }}" alt="img">
     @endforeach

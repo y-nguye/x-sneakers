@@ -47,7 +47,6 @@ class ProductController extends Controller
                 $img_filename = new ImgProduct;
 
                 $img_filename->product_id = $product_id;
-                // $file->store($this->dir_uploads);
                 $img_filename->file_name = $file->hashName();
                 Storage::disk('public')->put($this->dir_uploads . $img_filename->file_name, file_get_contents($file));
 
@@ -74,8 +73,9 @@ class ProductController extends Controller
     public function edit(string $id)
     {
         $product = Product::where('id', $id)->first();
+        $img_filenames = ImgProduct::where('product_id', $id)->get();
 
-        return view('product.edit', ['product' => $product]);
+        return view('product.edit', ['product' => $product, 'img_filenames' => $img_filenames]);
     }
 
     /**
@@ -84,6 +84,7 @@ class ProductController extends Controller
     public function update(Request $request, string $id)
     {
         $product = Product::where('id', $id)->first();
+        $img_filenames = ImgProduct::where('product_id', $id)->get();
 
         $product->name = $request->name;
         $product->describe = $request->describe;
