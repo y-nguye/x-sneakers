@@ -12,7 +12,7 @@
 
     <a href="{{ route('products.index') }}">Trở lại danh sách</a>
 
-    <form method="POST" action="{{ route('products.show', ['product' => $product->id]) }}">
+    <form method="POST" action="{{ route('products.update', ['product' => $product->id]) }}" enctype="multipart/form-data">
         @method('PUT')
         @csrf
 
@@ -35,7 +35,7 @@
             @endforeach
         </div>
 
-        <button type="submit" class="bg-indigo-800">Thêm</button>
+        <button type="submit" class="bg-indigo-800">Cập nhật</button>
 
     </form>
 

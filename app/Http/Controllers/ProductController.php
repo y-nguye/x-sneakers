@@ -84,13 +84,35 @@ class ProductController extends Controller
     public function update(Request $request, string $id)
     {
         $product = Product::where('id', $id)->first();
-        $img_filenames = ImgProduct::where('product_id', $id)->get();
 
         $product->name = $request->name;
         $product->describe = $request->describe;
         $product->quantity = $request->quantity;
 
         $product->save();
+
+        // Nếu có chọn ảnh mới trong input
+        if ($request->hasfile('images')) {
+            $img_filenames = ImgProduct::where('product_id', $id)->get();
+
+            // Xoá các ảnh cũ
+            foreach ($img_filenames as $file) {
+                Storage::disk('public')->delete($this->dir_uploads . $file->file_name);
+                $file->delete();
+            }
+
+            // Cập nhật ảnh mới
+            foreach ($request->file('images') as $file) {
+                $img_filename = new ImgProduct;
+
+                $img_filename->product_id = $id;
+                $img_filename->file_name = $file->hashName();
+
+                Storage::disk('public')->put($this->dir_uploads . $img_filename->file_name, file_get_contents($file));
+
+                $img_filename->save();
+            }
+        }
 
         return redirect(route('products.index'));
     }
