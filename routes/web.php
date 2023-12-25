@@ -19,6 +19,11 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
+Route::get('/cart', function () {
+    return view('cart');
+})->name('cart');
+
+
 Route::get('/user', function () {
     return view('user');
 })->middleware(['auth'])->name('user');

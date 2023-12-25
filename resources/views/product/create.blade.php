@@ -13,8 +13,6 @@
 
                     <form method="POST" action="{{ route('products.store') }}" enctype="multipart/form-data">
                         @csrf
-
-                        <!-- <input type="text" name="name" class="rounded" placeholder="Tên"> -->
                         <x-text-input name="name" type="text" class="mt-1 block w-1/2" placeholder="{{ __('Tên') }}" />
                         <br>
                         <x-text-input type="text" name="describe" class="mt-1 block w-3/4" placeholder="{{ __('Mô tả') }}" />
