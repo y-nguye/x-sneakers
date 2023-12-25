@@ -1,7 +1,7 @@
-<x-guest-layout>
+<x-admin-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Guest') }}
+            {{ __('Quản lý thành viên') }}
         </h2>
     </x-slot>
 
@@ -14,4 +14,4 @@
             </div>
         </div>
     </div>
-</x-guest-layout>
+</x-admin-layout>
