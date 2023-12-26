@@ -16,7 +16,12 @@ return new class extends Migration
             $table->string('name');
             $table->string('describe');
             $table->integer('quantity');
+            $table->foreignId('type_id')->constrained();
             $table->timestamps();
+        });
+
+        Schema::table('products', function (Blueprint $table) {
+            $table->string('slug')->unique()->after('name');
         });
     }
 

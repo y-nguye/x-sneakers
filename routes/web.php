@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ShopController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,10 +20,13 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
+Route::get('/{type}', [ShopController::class, 'index'])->where('type', 'new|men|women|kids')->name('type');
+
+Route::get('/{sneakers}', [ShopController::class, 'show'])->name('sneakers');
+
 Route::get('/cart', function () {
     return view('cart');
 })->name('cart');
-
 
 Route::get('/user', function () {
     return view('user');

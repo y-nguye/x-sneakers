@@ -12,16 +12,16 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
+                    <x-nav-link :href="route('type', ['type' => 'new'])" :active="request()->is('new')">
                         {{ __('Mới và Nổi bật') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
+                    <x-nav-link :href="route('type', ['type' => 'men'])" :active="request()->is('men')">
                         {{ __('Men') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
+                    <x-nav-link :href="route('type', ['type' => 'women'])" :active="request()->is('women')">
                         {{ __('Women') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
+                    <x-nav-link :href="route('type', ['type' => 'kids'])" :active="request()->is('kids')">
                         {{ __('Kids') }}
                     </x-nav-link>
                 </div>
