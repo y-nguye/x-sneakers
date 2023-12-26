@@ -23,7 +23,6 @@ class ShopController extends Controller
 
     public function show(string $slug)
     {
-        $product->slug = Str::slug($product->name);
         return view('sneakers', ['sneakers' => $slug]);
     }
 }

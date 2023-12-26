@@ -21,6 +21,13 @@
                         <br>
                         <input type="text" name="quantity" placeholder="Số lượng" value="{{ $product->quantity }}">
                         <br>
+
+                        <select name="type_id" id="type_id">
+                            @foreach($types as $type)
+                            <option value="{{ $type->id }}">{{ $type->type }}</option>
+                            @endforeach
+                        </select>
+
                         <input type="file" name="images[]" placeholder="Choose image" id="image_input" multiple>
                         <br>
 

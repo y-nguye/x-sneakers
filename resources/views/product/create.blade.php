@@ -19,6 +19,14 @@
                         <br>
                         <x-text-input type="text" name="quantity" class="mt-1 block w-3/4" placeholder="{{ __('Số lượng') }}" />
                         <br>
+
+                        <select name="type_id" id="type_id">
+                            @foreach($types as $type)
+                            <option value="{{ $type->id }}">{{ $type->type }}</option>
+                            @endforeach
+                        </select>
+                        <br>
+
                         <x-text-input type="file" name="images[]" class="mt-1 block w-3/4" placeholder="Choose image" id="image_input" multiple />
                         <br>
 

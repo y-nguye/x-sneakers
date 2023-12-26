@@ -22,8 +22,6 @@ Route::get('/', function () {
 
 Route::get('/{type}', [ShopController::class, 'index'])->where('type', 'new|men|women|kids')->name('type');
 
-Route::get('/{sneakers}', [ShopController::class, 'show'])->name('sneakers');
-
 Route::get('/cart', function () {
     return view('cart');
 })->name('cart');

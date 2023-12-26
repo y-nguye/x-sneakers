@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use App\Models\Product;
 use App\Models\ImgProduct;
+use App\Models\Type;
 
 class ProductController extends Controller
 {
@@ -24,7 +26,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('product.create');
+        $types = Type::all();
+        return view('product.create', ['types' => $types]);
     }
 
     /**
@@ -37,6 +40,8 @@ class ProductController extends Controller
         $product->name = $request->name;
         $product->describe = $request->describe;
         $product->quantity = $request->quantity;
+        $product->type_id = $request->type_id;
+        $product->slug = Str::slug($product->name);
 
         $product->save();
 
@@ -73,9 +78,10 @@ class ProductController extends Controller
     public function edit(string $id)
     {
         $product = Product::where('id', $id)->first();
+        $types = Type::all();
         $img_filenames = ImgProduct::where('product_id', $id)->get();
 
-        return view('product.edit', ['product' => $product, 'img_filenames' => $img_filenames]);
+        return view('product.edit', ['product' => $product, 'types' => $types, 'img_filenames' => $img_filenames]);
     }
 
     /**
@@ -88,6 +94,8 @@ class ProductController extends Controller
         $product->name = $request->name;
         $product->describe = $request->describe;
         $product->quantity = $request->quantity;
+        $product->type_id = $request->type_id;
+        $product->slug = Str::slug($product->name);
 
         $product->save();
 
