@@ -20,7 +20,7 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::get('/{type}', [ShopController::class, 'index'])->where('type', 'new|men|women|kids')->name('type');
+Route::get('/{type}/{name?}', [ShopController::class, 'index'])->where('type', 'new|men|women|kids')->name('type.name');
 
 Route::get('/cart', function () {
     return view('cart');
