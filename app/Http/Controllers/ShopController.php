@@ -19,7 +19,7 @@ class ShopController extends Controller
             }
 
             $type = Type::where('type', $type_slug)->firstOrFail();
-            $products = Product::where('type_id', $type->id)->getOrFail();
+            $products = Product::where('type_id', $type->id)->get();
 
             return view('classify-pages', ['products' => $products, 'type' => $type_slug]);
         } else {
